@@ -4,7 +4,6 @@ from src.prompts import *
 from src.tools.calendar import *
 from src.tools.email import *
 from src.tools.notion import *
-from src.tools.slack import *
 from src.tools.research import *
 from src.utils import get_current_date_time
 
@@ -40,16 +39,6 @@ class PersonalAssistant:
             model="openai/gpt-4o-mini",
             system_prompt=NOTION_AGENT_PROMPT.format(date_time=get_current_date_time()),
             tools=[get_my_todo_list, add_task_in_todo_list],
-            sub_agents=[],
-            temperature=0.1
-        )
-
-        self.slack_agent = Agent(
-            name="slack_agent",
-            description="Slack agent can read and send messages through Slack",
-            model="openai/gpt-4o-mini",
-            system_prompt=SLACK_AGENT_PROMPT.format(date_time=get_current_date_time()),
-            tools=[get_slack_messages, send_slack_message],
             sub_agents=[],
             temperature=0.1
         )
@@ -90,7 +79,6 @@ class PersonalAssistant:
                 self.email_agent,
                 self.calendar_agent,
                 self.notion_agent,
-                self.slack_agent,
                 self.researcher_agent
             ]
         )

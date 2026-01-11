@@ -138,6 +138,8 @@ env.bak/
 venv.bak/
 
 .DS_Store
+token.json
+credentials.json
 
 # Spyder project settings
 .spyderproject
