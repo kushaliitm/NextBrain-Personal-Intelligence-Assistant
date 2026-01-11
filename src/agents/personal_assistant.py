@@ -64,7 +64,6 @@ class PersonalAssistant:
                 self.email_agent,
                 self.calendar_agent,
                 self.notion_agent,
-                self.slack_agent,
                 self.researcher_agent
             ],
             temperature=0.1,

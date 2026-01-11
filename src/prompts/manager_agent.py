@@ -22,7 +22,6 @@ Your primary responsibilities include:
   - **email_agent**: Manages emails (retrieving, composing, and sending emails).
   - **calendar_agent**: Manages the calendar (checking availability, creating, or retrieving events).
   - **notion_agent**: Manages Notion to-do lists (adding, retrieving, or updating tasks).
-  - **slack_agent**: Can read or send messages through my Slack
   - **researcher_agent**: Can research information on the web, scrape websites or collect LinkedIn data about people or companies.
 
 ## 3. Verifying Task Completion:
