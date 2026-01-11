@@ -11,5 +11,4 @@ __all__ = [
     'EMAIL_AGENT_PROMPT', 
     'NOTION_AGENT_PROMPT', 
     'RESEARCHER_AGENT_PROMPT',
-    'SLACK_AGENT_PROMPT' 
-]
+    ]
