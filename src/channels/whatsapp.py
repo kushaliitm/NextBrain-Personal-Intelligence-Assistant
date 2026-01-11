@@ -14,14 +14,33 @@ class WhatsAppChannel:
         Sends a WhatsApp message.
         """
         try:
+            from_number = os.getenv('FROM_WHATSAPP_NUMBER')
+            if not from_number:
+                raise ValueError("FROM_WHATSAPP_NUMBER environment variable is not set")
+            
+            # Ensure both numbers have whatsapp: prefix
+            if not from_number.startswith("whatsapp:"):
+                from_number = f"whatsapp:{from_number}"
+            
+            if not to_number.startswith("whatsapp:"):
+                to_number = f"whatsapp:{to_number}"
+            
+            print(f"Sending WhatsApp message from {from_number} to {to_number}")
+            print(f"Message body: {body[:200]}...")  # Log first 200 chars
+            
             message = self.client.messages.create(
-                body=body,
-                from_=os.getenv('FROM_WHATSAPP_NUMBER'),  # Should be your Twilio WhatsApp number with 'whatsapp:' prefix
-                to=to_number # Ensure to prefix the number with 'whatsapp:'
+                body=str(body),
+                from_=from_number,
+                to=to_number
             )
+            print(f"Message sent successfully with SID: {message.sid}")
             return f"Message sent successfully with SID: {message.sid}"
         except Exception as e:
-            return f"Failed to send message: {e}"
+            error_msg = f"Failed to send message: {e}"
+            print(f"ERROR: {error_msg}")
+            import traceback
+            traceback.print_exc()
+            return error_msg
 
     def receive_messages(self):
         """
