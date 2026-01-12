@@ -42,7 +42,6 @@
   - [Calendar Agent](#calendar-agent)
   - [Notion Agent](#notion-agent)
   - [Researcher Agent](#researcher-agent)
-  - [Slack Agent](#slack-agent)
 - [Tools & Capabilities](#tools--capabilities)
   - [Email Tools](#email-tools)
   - [Calendar Tools](#calendar-tools)
@@ -71,8 +70,7 @@ NextBrain is an advanced personal intelligence assistant powered by LangChain an
 - Organize and manage your calendar (Google Calendar)
 - Handle your to-do lists and tasks (Notion)
 - Research information across the web
-- Search and scrape LinkedIn profiles
-- Integrate with multiple communication channels (WhatsApp, Telegram, Slack)
+- Integrate with multiple communication channels (WhatsApp)
 
 The architecture uses a **Manager Agent** that orchestrates specialized sub-agents, delegating tasks appropriately and ensuring quality assurance. All inter-agent communication is facilitated through a unified messaging framework.
 
@@ -130,28 +128,28 @@ The architecture uses a **Manager Agent** that orchestrates specialized sub-agen
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│           Communication Channels (WhatsApp, Telegram, Slack) │
+│           Communication Channels (WhatsApp) │
 └─────────────────────────────────────────────────────────────┘
                           ▲
                           │
                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│                     Manager Agent                            │
-│    (Orchestrator with SQLite Memory & Checkpointing)        │
-│                                                              │
-│  • Task Analysis & Delegation                               │
-│  • Quality Assurance                                         │
-│  • Response Compilation                                      │
-└─────────────────────────────────────────────────────────────┘
-       │         │         │         │         │
-       ▼         ▼         ▼         ▼         ▼
-  ┌────────┐┌────────┐┌────────┐┌────────┐┌────────┐
-  │ Email  ││Calendar││ Notion ││Research││ Slack  │
-  │ Agent  ││ Agent  ││ Agent  ││ Agent  ││ Agent  │
-  └────────┘└────────┘└────────┘└────────┘└────────┘
-       │         │         │         │         │
-       ▼         ▼         ▼         ▼         ▼
-    Gmail   Google Cal  Notion API  Web APIs  Slack API
+┌──────────────────────────────────────────────────────┐
+│                     Manager Agent                    │
+│    (Orchestrator with SQLite Memory & Checkpointing) │
+│                                                      │
+│  • Task Analysis & Delegation                        │
+│  • Quality Assurance                                 │
+│  • Response Compilation                              │
+└──────────────────────────────────────────────────────┘
+       │         │         │         │         
+       ▼         ▼         ▼         ▼         
+  ┌────────┐┌────────┐┌────────┐┌────────┐
+  │ Email  ││Calendar││ Notion ││Research│
+  │ Agent  ││ Agent  ││ Agent  ││ Agent  │
+  └────────┘└────────┘└────────┘└────────┘
+       │         │         │         │         
+       ▼         ▼         ▼         ▼         
+    Gmail   Google Cal  Notion API  Web APIs  
 ```
 
 ### Agent Hierarchy
@@ -167,7 +165,6 @@ The architecture uses a **Manager Agent** that orchestrates specialized sub-agen
   - Calendar Agent: Google Calendar integration
   - Notion Agent: Notion API integration
   - Researcher Agent: Web search and scraping
-  - Slack Agent: Slack integration
 
 ### Data Flow
 
@@ -221,8 +218,8 @@ NextBrain-Personal-Intelligence-Assistant/
 │   │   ├── email_agent.py             # Email agent system prompt
 │   │   ├── calendar_agent.py          # Calendar agent system prompt
 │   │   ├── notion_agent.py            # Notion agent system prompt
-│   │   ├── researcher_agent.py        # Research agent system prompt
-│   │   └── slack_agent.py             # Slack agent system prompt
+│   │   └── researcher_agent.py        # Research agent system prompt
+│   │   
 │   │
 │   ├── tools/
 │   │   ├── send_message.py           # Inter-agent communication tool
